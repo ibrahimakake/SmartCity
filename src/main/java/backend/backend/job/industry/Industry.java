@@ -31,6 +31,10 @@ public class Industry {
     // =========================
     // Industry Data
     // =========================
+
+    @Column(nullable = false)
+    private boolean active = true;
+
     @NotBlank(message = "Industry name is required")
     @Size(max = 100)
     @Column(nullable = false, unique = true, length = 100)

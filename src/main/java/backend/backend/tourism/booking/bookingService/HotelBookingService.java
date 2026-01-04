@@ -60,6 +60,11 @@ public class HotelBookingService {
     }
 
     @Transactional(readOnly = true)
+    public java.util.List<HotelBooking> getBookingsByTouristProfileId(UUID touristProfileId) {
+        return hotelBookingRepository.findByTouristProfileId(touristProfileId);
+    }
+
+    @Transactional(readOnly = true)
     public HotelBooking getBookingById(UUID bookingId) {
         return hotelBookingRepository.findById(bookingId)
                 .orElseThrow(() -> new EntityNotFoundException("Booking not found"));

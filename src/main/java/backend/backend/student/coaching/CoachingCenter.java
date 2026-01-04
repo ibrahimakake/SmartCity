@@ -1,12 +1,12 @@
 package backend.backend.student.coaching;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -21,17 +21,11 @@ import java.util.UUID;
 @ToString
 public class CoachingCenter {
 
-    // =========================
-    // Primary Key
-    // =========================
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    // =========================
-    // Coaching Center Info
-    // =========================
     @NotBlank(message = "Center name is required")
     @Size(max = 150)
     @Column(nullable = false, length = 150)
@@ -50,21 +44,30 @@ public class CoachingCenter {
     @NotBlank(message = "Specialization is required")
     @Size(max = 150)
     @Column(nullable = false, length = 150)
-    private String specialization; // ex: "Math", "Languages", "Programming"
+    private String specialization;
 
     @Size(max = 500)
     @Column(length = 500)
     private String description;
 
-    // =========================
-    // Opening Hours (optional)
-    // =========================
+    // URL/path e.g. "/uploads/coaching/<uuid>.jpg"
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @DecimalMin(value = "0.0", inclusive = true)
+    @Column(name = "starting_price", precision = 10, scale = 2)
+    private BigDecimal startingPrice;
+
+    @Column(name = "open_time")
     private LocalTime openTime;
+
+    @Column(name = "close_time")
     private LocalTime closeTime;
 
-    // =========================
-    // Auditing
-    // =========================
+    @Column(nullable = false)
+    private boolean active = true;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

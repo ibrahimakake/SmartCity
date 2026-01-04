@@ -37,13 +37,13 @@ public class TheatreBookingService {
         booking.setTheatre(theatre);
         booking.setShowTime(request.getShowTime());
         booking.setNumberOfTickets(request.getNumberOfTickets());
-        
+
         // Ensure totalPrice is not null and has the correct scale
-        BigDecimal totalPrice = request.getTotalPrice() != null ? 
-            request.getTotalPrice().setScale(2, java.math.RoundingMode.HALF_UP) : 
-            BigDecimal.ZERO;
+        BigDecimal totalPrice = request.getTotalPrice() != null
+                ? request.getTotalPrice().setScale(2, java.math.RoundingMode.HALF_UP)
+                : BigDecimal.ZERO;
         booking.setTotalPrice(totalPrice);
-        
+
         booking.setSeatNumbers(request.getSeatNumbers());
         booking.setStatus(BookingStatus.CONFIRMED);
 
@@ -54,6 +54,11 @@ public class TheatreBookingService {
     public TheatreBooking getById(UUID id) {
         return theatreBookingRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Theatre booking not found"));
+    }
+
+    @Transactional(readOnly = true)
+    public java.util.List<TheatreBooking> getBookingsByTouristProfileId(UUID touristProfileId) {
+        return theatreBookingRepository.findByTouristProfileId(touristProfileId);
     }
 
     @Transactional

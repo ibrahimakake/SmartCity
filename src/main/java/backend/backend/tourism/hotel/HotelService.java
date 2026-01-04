@@ -37,7 +37,8 @@ public class HotelService {
                     hotel.setName(hotelDetails.getName());
                     hotel.setAddress(hotelDetails.getAddress());
                     hotel.setRating(hotelDetails.getRating());
-                    hotel.setPriceRange(hotelDetails.getPriceRange());
+                    hotel.setMinPrice(hotelDetails.getMinPrice());
+                    hotel.setMaxPrice(hotelDetails.getMaxPrice());
                     return hotelRepository.save(hotel);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Hotel not found"));

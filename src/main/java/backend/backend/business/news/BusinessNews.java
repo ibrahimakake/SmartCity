@@ -22,29 +22,28 @@ import java.util.UUID;
 @ToString(exclude = {"industry", "createdBy"})
 public class BusinessNews {
 
-    // =========================
-    // Primary Key
-    // =========================
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    // =========================
-    // News Content
-    // =========================
     @NotBlank(message = "Title is required")
     @Size(max = 200)
     @Column(nullable = false, length = 200)
     private String title;
 
+    @Size(max = 300)
+    @Column(length = 300)
+    private String summary;
+
     @NotBlank(message = "Content is required")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    // =========================
-    // Relationships
-    // =========================
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "industry_id", nullable = false)
     private Industry industry;
@@ -53,9 +52,9 @@ public class BusinessNews {
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
 
-    // =========================
-    // Auditing
-    // =========================
+    @Column(nullable = false)
+    private Boolean active = true;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime publishedAt;

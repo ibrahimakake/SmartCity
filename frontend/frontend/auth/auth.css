@@ -1,0 +1,132 @@
+/* Smart City & Futuristic Theme - Auth Specific */
+
+/* Navbar overrides for Auth pages if needed */
+.navbar {
+    background: transparent;
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.auth-container {
+    width: 100%;
+    min-height: 80vh;
+    /* Ensure centering works well */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    /* Glassmorphism handled by .glass-panel class in HTML, or inherited here if needed */
+    /* Use layout.css variables */
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-area {
+    margin-bottom: 20px;
+}
+
+.logo-icon img {
+    height: 70px;
+    width: auto;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.6));
+}
+
+.auth-header h2 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: white;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.auth-header p,
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-left: 5px;
+}
+
+/* Inputs are handled by layout.css globally, but we can verify specificity */
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+.auth-footer {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+/* Password Toggle Styles */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color var(--transition-speed);
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+}

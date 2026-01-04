@@ -49,6 +49,17 @@ public class JobListing {
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal salary;
 
+    @NotBlank(message = "Contact number is required")
+    @Size(max = 20)
+    @Column(nullable = false, length = 20)
+    private String contactNumber;
+
+    @Email
+    @Size(max = 150)
+    @Column(nullable = false, length = 150)
+    private String email;
+
+
     // =========================
     // Relationships
     // =========================

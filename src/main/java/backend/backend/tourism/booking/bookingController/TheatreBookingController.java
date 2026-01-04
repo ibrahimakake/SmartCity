@@ -30,6 +30,12 @@ public class TheatreBookingController {
         return ResponseEntity.ok(theatreBookingService.getById(id));
     }
 
+    // TOURIST: list all bookings of a touristProfile
+    @GetMapping("/tourist/{touristProfileId}")
+    public ResponseEntity<java.util.List<TheatreBooking>> getByTouristProfile(@PathVariable UUID touristProfileId) {
+        return ResponseEntity.ok(theatreBookingService.getBookingsByTouristProfileId(touristProfileId));
+    }
+
     @PostMapping("/{id}/cancel")
     public ResponseEntity<Void> cancel(@PathVariable UUID id) {
         theatreBookingService.cancel(id);

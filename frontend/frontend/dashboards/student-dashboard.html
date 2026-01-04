@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Smart City</title>
+    <link rel="stylesheet" href="../shared/layout.css">
+    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard-hero">
+        <div class="container">
+            <h1>Student Portal</h1>
+            <p>Your gateway to educational resources</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search universities, libraries...">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid-container">
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-university"></i></div>
+                <h3>Universities</h3>
+                <p>Top universities in the city.</p>
+                <div class="card-action">
+                    <a href="../modules/student/universities.html" class="btn btn-primary">Browse Universities</a>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Colleges</h3>
+                <p>Explore colleges and institutes.</p>
+                <div class="card-action">
+                    <a href="../modules/student/colleges.html" class="btn btn-primary">Browse Colleges</a>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-book"></i></div>
+                <h3>Libraries</h3>
+                <p>Find public and private libraries.</p>
+                <div class="card-action">
+                    <a href="../modules/student/libraries.html" class="btn btn-primary">Find Libraries</a>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3>Coaching</h3>
+                <p>Coaching centers for competitive exams.</p>
+                <div class="card-action">
+                    <a href="../modules/student/coaching-centers.html" class="btn btn-primary">View Coaching Centers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/auth-guard.js"></script>
+    <script src="../shared/components.js"></script>
+    <script src="dashboards.js"></script>
+</body>
+
+</html>

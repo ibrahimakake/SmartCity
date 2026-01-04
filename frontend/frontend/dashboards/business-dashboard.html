@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Hub - Smart City</title>
+    <link rel="stylesheet" href="../shared/layout.css">
+    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="dashboard-hero">
+        <div class="container">
+            <h1>Business Hub</h1>
+            <p>Connect, grow, and prosper</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search businesses, news...">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid-container">
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-newspaper"></i></div>
+                <h3>Business News</h3>
+                <p>Latest updates and financial news.</p>
+                <div class="card-action">
+                    <a href="../modules/business/business-news.html" class="btn btn-primary">Read News</a>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Businesses</h3>
+                <p>Directory of local businesses.</p>
+                <div class="card-action">
+                    <a href="../modules/business/businesses.html" class="btn btn-primary">Browse Directory</a>
+                </div>
+            </div>
+
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-building"></i></div>
+                <h3>Business Centers</h3>
+                <p>Office spaces and convention centers.</p>
+                <div class="card-action">
+                    <a href="../modules/business/centers.html" class="btn btn-primary">Find Centers</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/auth-guard.js"></script>
+    <script src="../shared/components.js"></script>
+    <script src="dashboards.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+/* Student specific styles - Premium Dark */
+
+.edu-card {
+    border-left: 4px solid var(--info-color);
+    background: rgba(41, 121, 255, 0.05);
+    /* Tinted background */
+    transition: all 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(41, 121, 255, 0.4);
+    background: rgba(41, 121, 255, 0.1);
+}

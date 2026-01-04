@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Industries - Smart City</title>
+    <link rel="stylesheet" href="../../shared/layout.css">
+    <link rel="stylesheet" href="job.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-2">
+        <div class="page-header glass-panel mb-2">
+            <h1>Key Industries</h1>
+            <p>Explore the economic pillars of Smart City</p>
+        </div>
+
+        <!-- Filters & Search -->
+        <div class="glass-panel mb-2">
+            <div class="form-row" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: end;">
+                <div class="form-group" style="flex: 2; min-width: 250px;">
+                    <label><i class="fas fa-search"></i> Search</label>
+                    <input type="text" id="searchInput" placeholder="Search industries...">
+                </div>
+                <div class="form-group" style="flex: 1; min-width: 150px;">
+                    <label><i class="fas fa-chart-pie"></i> Sector</label>
+                    <select id="sectorFilter">
+                        <option value="All">All Sectors</option>
+                        <option value="Primary">Primary</option>
+                        <option value="Secondary">Secondary</option>
+                        <option value="Tertiary">Tertiary</option>
+                        <option value="Quaternary">Quaternary</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 0;">
+                    <button class="btn btn-primary" id="filterBtn" style="height: 46px;">Filter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry List Grid -->
+        <div id="industry-list" class="grid-container">
+            <!-- Populated by JS -->
+            <p class="text-center">Loading industries...</p>
+        </div>
+
+        <div class="text-center mt-2 mb-2">
+            <a href="../../dashboards/job-dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div id="modalBody">
+                <!-- Content populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../../services/industriesApi.js"></script>
+    <script src="../../shared/auth-guard.js"></script>
+    <script src="../../shared/components.js"></script>
+    <script src="industries.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Components.renderNavbar();
+            if (typeof initIndustries === 'function') initIndustries();
+        });
+    </script>
+</body>
+
+</html>

@@ -2,12 +2,10 @@ package backend.backend.tourism.restaurant;
 
 import backend.backend.tourism.booking.bookingEntity.RestaurantReservation;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,10 +40,17 @@ public class Restaurant {
     @Column(nullable = false, length = 200)
     private String address;
 
-    @DecimalMin(value = "0.0", message = "Rating must be at least 0")
-    @DecimalMax(value = "5.0", message = "Rating cannot exceed 5")
+    @NotNull(message = "Star rating is required")
+    @Min(value = 1, message = "Star rating must be between 1 and 5")
+    @Max(value = 5, message = "Star rating must be between 1 and 5")
     @Column(nullable = false)
-    private double rating;
+    private Integer starRating;
+
+    @NotNull(message = "Rating is required")
+    @DecimalMin(value = "0.0", message = "Rating must be at least 0.0")
+    @DecimalMax(value = "5.0", message = "Rating cannot exceed 5.0")
+    @Column(nullable = false, precision = 2, scale = 1)
+    private BigDecimal rating;
 
     @NotBlank(message = "Price range is required")
     @Size(max = 50)
@@ -64,6 +69,13 @@ public class Restaurant {
     @Size(max = 20)
     @Column(nullable = false, length = 20)
     private String contactNumber;
+
+
+    // stores the public URL or relative path, e.g. "/uploads/hotels/<uuid>.jpg"
+    @Size(min = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
 
     // =============================
     // Relationships

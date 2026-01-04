@@ -1,12 +1,12 @@
 package backend.backend.student.library;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -21,17 +21,11 @@ import java.util.UUID;
 @ToString
 public class Library {
 
-    // =========================
-    // Primary Key
-    // =========================
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    // =========================
-    // Library Information
-    // =========================
     @NotBlank(message = "Library name is required")
     @Size(max = 150)
     @Column(nullable = false, length = 150)
@@ -51,15 +45,24 @@ public class Library {
     @Column(length = 500)
     private String description;
 
-    // =========================
-    // Opening Hours
-    // =========================
+    // Better naming than "startingPrice" for a library
+    @DecimalMin(value = "0.0", inclusive = true)
+    @Column(name = "membership_fee", precision = 10, scale = 2)
+    private BigDecimal membershipFee;
+
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    @Column(name = "open_time")
     private LocalTime openTime;
+
+    @Column(name = "close_time")
     private LocalTime closeTime;
 
-    // =========================
-    // Auditing
-    // =========================
+    @Column(nullable = false)
+    private boolean active = true;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

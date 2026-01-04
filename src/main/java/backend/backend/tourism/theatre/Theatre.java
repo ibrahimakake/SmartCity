@@ -2,12 +2,7 @@ package backend.backend.tourism.theatre;
 
 import backend.backend.tourism.booking.bookingEntity.TheatreBooking;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -45,6 +40,7 @@ public class Theatre {
     @Column(nullable = false, precision = 2, scale = 1)
     private BigDecimal rating = new BigDecimal("0.0");
 
+
     @NotBlank(message = "Description is required")
     @Size(max = 500)
     @Column(nullable = false, length = 500)
@@ -54,6 +50,11 @@ public class Theatre {
     @Size(max = 20)
     @Column(nullable = false, length = 20)
     private String contactNumber;
+
+    // stores the public URL or relative path, e.g. "/uploads/hotels/<uuid>.jpg"
+    @Size(min = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
 
     // =========================
     // Relationships

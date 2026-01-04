@@ -2,11 +2,12 @@ package backend.backend.student.university;
 
 import backend.backend.enums.Faculty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "universities")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -42,21 +44,34 @@ public class University {
     private String contact;
 
     @NotNull(message = "Open time is required")
-    @Column(nullable = false)
+    @Column(name = "open_time", nullable = false)
     private LocalTime openTime;
 
     @NotNull(message = "Close time is required")
-    @Column(nullable = false)
+    @Column(name = "close_time", nullable = false)
     private LocalTime closeTime;
+
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
 
     @Size(max = 500)
     @Column(length = 500)
     private String description;
 
-    // University can have multiple faculties
+    @Column(nullable = false)
+    private boolean active = true;
+
     @ElementCollection(targetClass = Faculty.class)
-    @CollectionTable(name = "university_faculties", joinColumns = @JoinColumn(name = "university_id"))
+    @CollectionTable(
+            name = "university_faculties",
+            joinColumns = @JoinColumn(name = "university_id")
+    )
     @Enumerated(EnumType.STRING)
     @Column(name = "faculty", nullable = false, length = 50)
     private Set<Faculty> faculties = new HashSet<>();
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 }

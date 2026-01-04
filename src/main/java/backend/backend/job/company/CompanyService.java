@@ -54,7 +54,8 @@ public class CompanyService {
         return companyRepository.findById(id)
                 .map(company -> {
                     company.setName(details.getName());
-                    company.setContact(details.getContact());
+                    company.setContactNumber(details.getContactNumber());
+                    company.setEmail(details.getEmail());
                     company.setSector(details.getSector());
                     company.setAddress(details.getAddress());
                     return companyRepository.save(company);

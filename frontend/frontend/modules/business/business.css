@@ -1,0 +1,14 @@
+/* Business specific styles - Premium Dark */
+
+.biz-card {
+    border-left: 4px solid var(--success-color);
+    background: rgba(0, 230, 118, 0.05);
+    /* Tinted background */
+    transition: all 0.3s ease;
+}
+
+.biz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 230, 118, 0.4);
+    background: rgba(0, 230, 118, 0.1);
+}

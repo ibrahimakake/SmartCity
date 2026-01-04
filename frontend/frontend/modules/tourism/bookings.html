@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - Smart City</title>
+    <link rel="stylesheet" href="../../shared/layout.css">
+    <link rel="stylesheet" href="tourism.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: #000;
+            border-color: var(--primary-color);
+        }
+
+        .booking-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .booking-info h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+
+        .booking-info p {
+            margin: 3px 0;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            background: rgba(0, 230, 118, 0.2);
+            color: #00e676;
+            border: 1px solid rgba(0, 230, 118, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-2">
+        <div class="page-header glass-panel mb-2">
+            <h1>My Bookings</h1>
+            <p>Manage your reservations and tickets</p>
+        </div>
+
+        <div class="glass-panel mb-2">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('hotels')"><i class="fas fa-hotel"></i>
+                    Hotels</button>
+                <button class="tab-btn" onclick="switchTab('restaurants')"><i class="fas fa-utensils"></i>
+                    Restaurants</button>
+                <button class="tab-btn" onclick="switchTab('tickets')"><i class="fas fa-ticket-alt"></i>
+                    Tickets</button>
+            </div>
+
+            <div id="hotels-tab" class="tab-content" style="display: block;">
+                <div id="hotel-bookings-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div id="restaurants-tab" class="tab-content" style="display: none;">
+                <div id="restaurant-bookings-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div id="tickets-tab" class="tab-content" style="display: none;">
+                <div id="ticket-bookings-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2 mb-2">
+            <a href="../../dashboards/tourism-dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="../../shared/auth-guard.js"></script>
+    <script src="../../shared/components.js"></script>
+    <script src="bookings.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Components.renderNavbar();
+            if (typeof initBookings === 'function') initBookings();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Future of Living</title>
+    <link rel="stylesheet" href="shared/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            animation: textFadeIn 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 50px rgba(0, 242, 254, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar rendered by JS -->
+
+    <header class="landing-hero">
+        <div class="hero-content">
+            <h1>Welcome to Smart City</h1>
+            <p>Experience the future of urban living. Connect, explore, and thrive in a fully digital city ecosystem.
+            </p>
+            <div class="hero-buttons">
+                <a href="auth/register.html" class="btn btn-primary hero-btn">Get
+                    Started</a>
+                <a href="about.html" class="btn btn-secondary hero-btn">Learn
+                    More</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features container">
+        <h2 class="section-title">Why Smart City?</h2>
+        <div class="grid-container">
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-city"></i></div>
+                <h3>Integrated Services</h3>
+                <p>Access tourism, education, jobs, and business services in one unified platform.</p>
+            </div>
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-lock"></i></div>
+                <h3>Secure Digital ID</h3>
+                <p>Your data is protected with state-of-the-art security and role-access control.</p>
+            </div>
+            <div class="card text-center">
+                <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Real-time Updates</h3>
+                <p>Get live updates on city events, traffic, and opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2025 Smart City Initiative. All rights reserved.
+    </footer>
+
+    <script src="shared/role-router.js"></script>
+    <script src="shared/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Components.renderNavbar('Home');
+        });
+    </script>
+</body>
+
+</html>

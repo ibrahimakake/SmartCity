@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business News - Smart City</title>
+    <link rel="stylesheet" href="../../shared/layout.css">
+    <link rel="stylesheet" href="business.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-2">
+        <div class="page-header glass-panel mb-2">
+            <h1>Business News</h1>
+            <p>Latest updates and insights from the market</p>
+        </div>
+
+        <!-- Filters & Search -->
+        <div class="glass-panel mb-2">
+            <div class="form-row" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: end;">
+                <div class="form-group" style="flex: 2; min-width: 250px;">
+                    <label><i class="fas fa-search"></i> Search</label>
+                    <input type="text" id="searchInput" placeholder="Search news...">
+                </div>
+                <div class="form-group" style="flex: 1; min-width: 150px;">
+                    <label><i class="fas fa-industry"></i> Industry</label>
+                    <select id="industryFilter">
+                        <option value="All">All Industries</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Economy">Economy</option>
+                        <option value="Real Estate">Real Estate</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 0;">
+                    <button class="btn btn-primary" id="filterBtn" style="height: 46px;">Filter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- News List Grid -->
+        <div id="news-list" class="grid-container">
+            <!-- Populated by JS -->
+            <p class="text-center">Loading news...</p>
+        </div>
+
+        <div class="text-center mt-2 mb-2">
+            <a href="../../dashboards/business-dashboard.html" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;"> <!-- Wide modal for news reading -->
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div id="modalBody">
+                <!-- Content populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../../services/businessNewsApi.js"></script>
+    <script src="../../shared/auth-guard.js"></script>
+    <script src="../../shared/components.js"></script>
+    <script src="business-news.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Components.renderNavbar();
+            if (typeof initBusinessNews === 'function') initBusinessNews();
+        });
+    </script>
+</body>
+
+</html>
