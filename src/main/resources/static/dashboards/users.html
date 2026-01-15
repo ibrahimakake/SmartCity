@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Smart City</title>
+    <link rel="stylesheet" href="../shared/layout.css">
+    <link rel="stylesheet" href="users.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="admin-dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="has-submenu">
+                    <a href="#"><i class="fas fa-landmark"></i> Business</a>
+                    <ul class="submenu">
+                        <li><a href="../modules/business/admin-businesses.html"><i class="fas fa-store"></i>
+                                Businesses</a></li>
+                        <li><a href="../modules/business/admin-business-centers.html"><i class="fas fa-building"></i>
+                                Business Centers</a></li>
+                        <li><a href="../modules/business/admin-business-news.html"><i class="fas fa-newspaper"></i>
+                                Business News</a></li>
+                    </ul>
+                </li>
+                <li><a href="../modules/tourism/admin-hotels.html"><i class="fas fa-map-marked-alt"></i> Tourism</a>
+                </li>
+                <li><a href="../modules/student/admin-universities.html"><i class="fas fa-graduation-cap"></i>
+                        Education</a></li>
+                <li><a href="../modules/job/admin-jobs.html"><i class="fas fa-briefcase"></i> Jobs</a></li>
+                <li class="active"><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="toggle-sidebar"><i class="fas fa-bars"></i></div>
+                <div class="user-info"><span id="adminName">Admin User</span><i class="fas fa-user-circle"></i></div>
+            </header>
+
+            <div class="container-fluid">
+                <div class="page-header">
+                    <h1>User Management</h1>
+                    <button class="btn btn-success" id="addUserBtn"><i class="fas fa-plus"></i> Add User</button>
+                </div>
+
+                <div class="table-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search by username or email...">
+                    </div>
+                    <div class="filter-box">
+                        <select id="roleFilter"
+                            style="padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0; margin-left: 10px;">
+                            <option value="all">All Roles</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="TOURIST">TOURIST</option>
+                            <option value="STUDENT">STUDENT</option>
+                            <option value="JOB_APPLICANT">JOB_APPLICANT</option>
+                            <option value="BUSINESS_USER">BUSINESS_USER</option>
+                        </select>
+                        <select id="statusFilter"
+                            style="padding: 8px; border-radius: 6px; border: 1px solid #e2e8f0; margin-left: 10px;">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive glass-panel" style="position: relative;">
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.7); display: flex; justify-content: center; align-items: center; z-index: 10;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Add New User</h2>
+            <form id="userForm">
+                <input type="hidden" id="userId">
+
+                <div class="form-row" style="display: flex; gap: 1rem;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username (min 4 chars)</label>
+                    <input type="text" id="username" required minlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" required>
+                        <option value="TOURIST">TOURIST</option>
+                        <option value="STUDENT">STUDENT</option>
+                        <option value="JOB_APPLICANT">JOB_APPLICANT</option>
+                        <option value="BUSINESS_USER">BUSINESS_USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password (min 8 chars)</label>
+                    <input type="password" id="password" required minlength="8">
+                    <small style="color: #718096; display: block; margin-top: 5px;">Leave blank to keep existing
+                        password when editing.</small>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="userActive" checked>
+                    <label for="userActive">Active</label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include API Client -->
+    <script src="../shared/api.js"></script>
+    <!-- Include Users API Service -->
+    <script src="../services/usersApi.js"></script>
+    
+    <script src="../shared/auth-guard.js"></script>
+    <script src="../shared/sidebar.js"></script>
+    <script>
+        // Initialize sidebar toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toggle sidebar
+            const toggleSidebar = document.querySelector('.toggle-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (toggleSidebar && sidebar) {
+                toggleSidebar.addEventListener('click', () => {
+                    sidebar.classList.toggle('collapsed');
+                });
+            }
+            
+            // Set current admin name
+            const adminName = localStorage.getItem('username') || 'Admin';
+            const adminNameEl = document.getElementById('adminName');
+            if (adminNameEl) {
+                adminNameEl.textContent = adminName;
+            }
+        });
+    </script>
+    <script src="users.js"></script>
+</body>
+
+</html>

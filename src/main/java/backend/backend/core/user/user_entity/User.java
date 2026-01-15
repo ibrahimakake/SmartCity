@@ -8,7 +8,13 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import backend.backend.core.user.user_entity.TouristProfile;
+
+import java.util.Collection;
+import java.util.Collections;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,7 +28,7 @@ import java.util.UUID;
 @ToString(exclude = {"password", "touristProfile"})
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements UserDetails {
 
     // =========================
     // Primary Key
@@ -87,6 +93,53 @@ public class User {
     //  TouristProfile should  be deleted when User deleted
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private TouristProfile touristProfile;
+
+
+   /// =========================
+
+    @Column(name = "refresh_token", length = 1000)
+    private String refreshToken;
+
+    // =========================
+    // UserDetails Implementation
+    // =========================
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return active;
+    }
+
+    // =========================
+    // Getters and Setters
+    // =========================
+    public String getRefreshToken() {
+        return this.refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
+
 
     // =========================
     // Auditing

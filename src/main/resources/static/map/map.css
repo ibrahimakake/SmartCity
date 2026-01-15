@@ -1,0 +1,28 @@
+/* Map Styles - Dark Theme Integration */
+#map-container {
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+    /* Neon glow */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    /* Ensure rounded corners on map */
+    transition: all 0.3s ease;
+}
+
+#map-container:hover {
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.4);
+    border-color: var(--primary-color);
+}
+
+/* Dark Mode for Map Tiles */
+.leaflet-tile {
+    filter: invert(100%) hue-rotate(180deg) brightness(85%) contrast(90%);
+}
+
+.map-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}

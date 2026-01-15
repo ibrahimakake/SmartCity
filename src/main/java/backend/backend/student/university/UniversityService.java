@@ -1,7 +1,5 @@
 package backend.backend.student.university;
 
-import backend.backend.student.university.University;
-import backend.backend.student.university.repository.UniversityRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

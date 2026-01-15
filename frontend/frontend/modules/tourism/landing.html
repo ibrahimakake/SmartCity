@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Tourism - Casablanca</title>
+    <link rel="stylesheet" href="../../shared/layout.css">
+    <link rel="stylesheet" href="../../assets/css/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Specific override for module landing pages if needed, 
+           or reuse landing.css classes. 
+           we need to adjust paths for images in css if they are relative.
+           landing.css might likely be generic enough. */
+
+        /* Removed obstructive hero-content background to make image visible/
+           Text readability is handled by text-shadow in landing.css */
+        .hero-content {
+            /* background: rgba(0, 0, 0, 0.5); */
+            /* backdrop-filter: blur(5px); */
+            padding: 40px;
+            /* keeping padding for spacing if needed, but reducing visual noise */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar landing-nav">
+        <div class="container">
+            <a href="../../index.html" class="nav-brand">
+                <img src="../../assets/images/logo.svg?v=4" alt="Smart City" class="logo-animate"
+                    onerror="this.style.display='none';">
+            </a>
+            <div class="nav-links central-nav">
+                <a href="../../index.html#modules">Modules</a>
+                <a href="#features">Features</a>
+            </div>
+            <div class="nav-user-actions">
+                <a href="../../auth/login.html" class="btn btn-link"
+                    style="color: white; text-decoration: none; margin-right: 15px;">Login</a>
+                <a href="../../auth/register.html" class="btn btn-primary"
+                    style="background: white; color: #0b1120;">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="landing-hero"
+        style="background-image: url('../../assets/images/tourism.png'); background-size: cover; background-position: center;">
+        <div class="hero-content">
+            <h1>Smart Tourism</h1>
+            <p>Experience the magic of Casablanca. From luxury hotels to hidden cultural gems, plan your perfect stay
+                with our integrated tourism network.</p>
+            <div class="hero-buttons">
+                <a href="../../auth/login.html" class="btn-hero btn-primary-hero">Login to Explore</a>
+                <a href="map.html" class="btn-hero btn-secondary-hero">Explore Map</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section class="modules-section" id="features" style="background: var(--bg-color);">
+        <h2 class="section-title">Everything You Need</h2>
+        <p class="section-subtitle">Your personal guide to the city.</p>
+
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=600&q=80')">
+                </div>
+                <div class="module-icon"><i class="fas fa-hotel"></i></div>
+                <div class="module-content">
+                    <h3>Hotels</h3>
+                    <p>Find and book the perfect accommodation, from 5-star luxury to boutique stays.</p>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?auto=format&fit=crop&w=600&q=80')">
+                </div>
+                <div class="module-icon"><i class="fas fa-theater-masks"></i></div>
+                <div class="module-content">
+                    <h3>Theatres</h3>
+                    <p>Book tickets for theaters, cinemas, and cultural events happening now.</p>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=600&q=80')">
+                </div>
+                <div class="module-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="module-content">
+                    <h3>Attractions</h3>
+                    <p>Discover museums, parks, and historical sites with real-time visitor info.</p>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=600&q=80')">
+                </div>
+                <div class="module-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <div class="module-content">
+                    <h3>ATMs</h3>
+                    <p>Locate the nearest ATMs and bank branches for your convenience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Smart City Casablanca. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

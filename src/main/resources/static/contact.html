@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Smart City</title>
+    <link rel="stylesheet" href="shared/layout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container" style="padding-top: 150px;">
+        <div class="auth-container"> <!-- Reuse glass card layout -->
+            <div class="card" style="max-width: 600px; width: 100%;">
+                <h1 class="text-center" style="color: var(--primary-color); margin-bottom: 20px;">Contact Us</h1>
+                <p class="text-center" style="margin-bottom: 30px; color: #ccc;">Have questions? We'd love to hear from
+                    you.</p>
+
+                <form onsubmit="event.preventDefault(); alert('Message sent! (Mock)');">
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <textarea class="form-control" rows="5" placeholder="Your Message"
+                            style="border: 1px solid var(--input-border); background: var(--input-bg); color: white; width: 100%; border-radius: 8px; padding: 10px;"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-2" style="color: #aaa;">
+            <p><i class="fas fa-envelope"></i> support@smartcity.com</p>
+            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        </div>
+    </div>
+
+    <script src="shared/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Components.renderNavbar('Contact');
+        });
+    </script>
+</body>
+
+</html>

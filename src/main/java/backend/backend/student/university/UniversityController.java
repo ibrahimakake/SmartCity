@@ -1,7 +1,5 @@
 package backend.backend.student.university;
 
-import backend.backend.student.university.University;
-import backend.backend.student.university.UniversityService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

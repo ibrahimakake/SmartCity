@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +19,33 @@ public class JwtService {
     private static final String SECRET_STRING =
             "your-very-secure-and-very-long-secret-key-at-least-32-chars_ibra";
 
-    private static final long EXPIRATION_TIME_MS = 86400000; // 24h
+    private static final long ACCESS_TOKEN_EXPIRATION_MS = 86400000; // 24 hours
+    private static final long REFRESH_TOKEN_EXPIRATION_MS = 604800000; // 7 days
 
     private final SecretKey secretKey =
             Keys.hmacShaKeyFor(SECRET_STRING.getBytes(StandardCharsets.UTF_8));
 
+    /**
+     * Generate access token (24h expiration)
+     */
     public String generateToken(User user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())
                 .claim("role", user.getRole().name())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_MS))
+                .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_MS))
+                .signWith(secretKey, SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    /**
+     * Generate refresh token (7 days expiration)
+     */
+    public String generateRefreshToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION_MS))
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }

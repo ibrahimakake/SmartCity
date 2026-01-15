@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Admin - Smart City</title>
+    <link rel="stylesheet" href="../../shared/layout.css">
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body>
+    <div class="container mt-2">
+        <h1>Student Resource Management</h1>
+        <div class="grid-container">
+            <div class="card text-center">
+                <h3>Universities</h3>
+                <div class="card-action"><a href="universities.html" class="btn btn-primary">Manage</a></div>
+            </div>
+            <div class="card text-center">
+                <h3>Colleges</h3>
+                <div class="card-action"><a href="colleges.html" class="btn btn-primary">Manage</a></div>
+            </div>
+            <div class="card text-center">
+                <h3>Libraries</h3>
+                <div class="card-action"><a href="libraries.html" class="btn btn-primary">Manage</a></div>
+            </div>
+            <div class="card text-center">
+                <h3>Coaching Centers</h3>
+                <div class="card-action"><a href="coaching-centers.html" class="btn btn-primary">Manage</a></div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <a href="../../dashboards/admin-dashboard.html" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+    <script src="../../shared/auth-guard.js"></script>
+    <script src="../../shared/components.js"></script>
+    <script>Components.renderNavbar('Student Admin');</script>
+</body>
+
+</html>

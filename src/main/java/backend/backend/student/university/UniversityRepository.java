@@ -1,6 +1,5 @@
-package backend.backend.student.university.repository;
+package backend.backend.student.university;
 
-import backend.backend.student.university.University;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

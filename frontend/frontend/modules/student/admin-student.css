@@ -284,6 +284,8 @@
     max-width: 650px;
     background: #151b2b;
     /* Slightly lighter than body for contrast */
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .form-row {
