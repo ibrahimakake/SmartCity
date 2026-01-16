@@ -75,9 +75,10 @@ public class Hotel {
     private BigDecimal startingPrice;
 
     // stores the public URL or relative path, e.g. "/uploads/hotels/<uuid>.jpg"
-    @Size(min = 500)
-    @Column(name = "image_url", length = 500)
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500, nullable = true)
     private String imageUrl;
+
 
     @Column(nullable = false)
     private boolean active = true;

@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
@@ -29,6 +32,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.configurationSource(request -> {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:3000"));
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                config.setAllowedHeaders(List.of("*"));
+                config.setAllowCredentials(true);
+                return config;
+            }))
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints and static resources
@@ -37,17 +48,39 @@ public class SecurityConfig {
                     "/index.html",
                     "/auth/**",
                     "/api/public/**",
+                    "/shared/**",
+                    "/services/**",
+                    "/modules/**",
+                    
+                    // Swagger UI
                     "/swagger-ui/**",
                     "/v3/api-docs/**",
                     "/swagger-ui.html",
                     "/swagger-resources/**",
                     "/webjars/**",
+                    "/v3/api-docs",
+                    "/v3/api-docs.yaml",
+                    "/v3/api-docs/swagger-config",
+                    "/v3/api-docs/springdoc-defaults",
+                    "/v3/api-docs/springdoc-defaults.yaml",
+                    "/v3/api-docs/springdoc-defaults.json",
                     "/error",
+                    
+                    // Static resources
                     "/**/*.html",
                     "/**/*.css",
                     "/**/*.js",
+                    "/**/*.js.map",
                     "/**/*.png",
                     "/**/*.jpg",
+                    "/**/*.jpeg",
+                    "/**/*.gif",
+                    "/**/*.svg",
+                    "/**/*.ico",
+                    "/**/*.ttf",
+                    "/**/*.woff",
+                    "/**/*.woff2",
+                    "/**/assets/**",
                     "/**/*.jpeg",
                     "/**/*.gif",
                     "/**/*.svg",
@@ -61,6 +94,9 @@ public class SecurityConfig {
                 .requestMatchers("/api/hotel-bookings/**").hasRole("TOURIST")
                 .requestMatchers("/api/restaurant-reservations/**").hasRole("TOURIST")
                 .requestMatchers("/api/theatre-bookings/**").hasRole("TOURIST")
+                
+                // Restaurant management: only ADMIN
+                .requestMatchers("/api/restaurants/**").hasRole("ADMIN")
                 
                 // All other API endpoints require authentication
                 .requestMatchers("/api/**").authenticated()

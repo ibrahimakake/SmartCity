@@ -39,8 +39,7 @@ class TheatresApi {
     /**
      * POST /api/theatre-bookings
      */
-    async bookToken(bookingData) { // renamed to avoid conflict if any, but book works. Method name can be book.
-        // Actually adhering to generic naming, let's call it book.
+    async bookToken(bookingData) {
         console.log('[TheatresApi] POST /api/theatre-bookings', bookingData);
         return await api.post('/api/theatre-bookings', bookingData);
     }
@@ -52,6 +51,7 @@ class TheatresApi {
         console.log(`[TheatresApi] POST /api/theatre-bookings/${id}/cancel`);
         return await api.post(`/api/theatre-bookings/${id}/cancel`, {});
     }
+
     /**
      * GET /api/theatre-bookings/tourist/{id}
      */
@@ -60,4 +60,6 @@ class TheatresApi {
         return await api.get(`/api/theatre-bookings/tourist/${touristId}`);
     }
 }
+
 const theatresApi = new TheatresApi();
+window.theatresApi = theatresApi;  // ← ADD THIS!

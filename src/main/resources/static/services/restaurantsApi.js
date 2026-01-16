@@ -60,3 +60,8 @@ class RestaurantsApi {
     }
 }
 const restaurantsApi = new RestaurantsApi();
+
+// Expose to window object if it doesn't exist
+if (typeof window !== 'undefined' && !window.restaurantsApi) {
+    window.restaurantsApi = restaurantsApi;
+}

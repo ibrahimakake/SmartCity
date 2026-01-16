@@ -33,15 +33,25 @@ public class RestaurantService {
     @Transactional
     public Restaurant updateRestaurant(UUID id, Restaurant details) {
         return restaurantRepository.findById(id)
-                .map(r -> {
-                    r.setName(details.getName());
-                    r.setAddress(details.getAddress());
-                    r.setRating(details.getRating());
-                    r.setPriceRange(details.getPriceRange());
-                    r.setDescription(details.getDescription());
-                    r.setCuisineType(details.getCuisineType());
-                    r.setContactNumber(details.getContactNumber());
-                    return restaurantRepository.save(r);
+                .map(restaurant -> {
+                    // Basic information
+                    restaurant.setName(details.getName());
+                    restaurant.setAddress(details.getAddress());
+                    restaurant.setDescription(details.getDescription());
+                    
+                    // Contact information
+                    restaurant.setContactNumber(details.getContactNumber());
+                    
+                    // Ratings and pricing
+                    restaurant.setStarRating(details.getStarRating());
+                    restaurant.setRating(details.getRating());
+                    restaurant.setPriceRange(details.getPriceRange());
+                    
+                    // Additional details
+                    restaurant.setCuisineType(details.getCuisineType());
+                    restaurant.setImageUrl(details.getImageUrl());
+                    
+                    return restaurantRepository.save(restaurant);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Restaurant not found"));
     }

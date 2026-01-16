@@ -43,6 +43,23 @@ public class Attraction {
     @Column(nullable = false, length = 500)
     private String description;
 
+    // ============= NEW FIELDS =============
+
+    // Change from @NotBlank to optional
+    @Size(max = 200)
+    @Column(length = 200)  // Remove nullable = false
+    private String address;
+
+    @Size(max = 20)
+    @Column(name = "contact_number", length = 20)  // Remove nullable = false
+    private String contactNumber;
+
+    @Size(max = 500)
+    @Column(name = "image_url", length = 500)
+    private String imageUrl;
+
+    // ======================================
+
     // Class-diagram methods (domain methods)
     public void updateDetails(String name, String category, String description) {
         this.name = name;

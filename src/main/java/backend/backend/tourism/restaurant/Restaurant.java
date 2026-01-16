@@ -70,17 +70,20 @@ public class Restaurant {
     @Column(nullable = false, length = 20)
     private String contactNumber;
 
+    @Size(max = 100)
+    @Column(length = 100)
+    private String openingHours;
 
     // stores the public URL or relative path, e.g. "/uploads/hotels/<uuid>.jpg"
-    @Size(min = 500)
+    @Size(max = 500)
     @Column(name = "image_url", length = 500)
     private String imageUrl;
-
 
     // =============================
     // Relationships
     // =============================
     // Informational side only – reservations are created/managed by TouristProfile
     @OneToMany(mappedBy = "restaurant")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<RestaurantReservation> reservations = new ArrayList<>();
 }

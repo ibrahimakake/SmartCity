@@ -1,6 +1,7 @@
 package backend.backend.tourism.theatre;
 
 import backend.backend.tourism.booking.bookingEntity.TheatreBooking;
+import com.fasterxml.jackson.annotation.JsonIgnore;  // ← ADD THIS IMPORT
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -40,7 +41,6 @@ public class Theatre {
     @Column(nullable = false, precision = 2, scale = 1)
     private BigDecimal rating = new BigDecimal("0.0");
 
-
     @NotBlank(message = "Description is required")
     @Size(max = 500)
     @Column(nullable = false, length = 500)
@@ -51,14 +51,14 @@ public class Theatre {
     @Column(nullable = false, length = 20)
     private String contactNumber;
 
-    // stores the public URL or relative path, e.g. "/uploads/hotels/<uuid>.jpg"
-    @Size(min = 500)
+    @Size(max = 500)  // ← FIXED: was min = 500, should be max
     @Column(name = "image_url", length = 500)
     private String imageUrl;
 
     // =========================
     // Relationships
     // =========================
+    @JsonIgnore  // ← ADD THIS ANNOTATION
     @OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TheatreBooking> bookings = new ArrayList<>();
 }

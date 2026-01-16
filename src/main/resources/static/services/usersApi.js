@@ -1,84 +1,67 @@
 /**
- * Users API Service
+ * Users API Service (Classic script)
  * Handles all backend interactions for User management.
+ *
+ * Requires: window.api (from /shared/api.js)
+ * Exposes: window.usersApi
  */
+(function () {
+  'use strict';
 
-class UsersApi {
-    constructor() {
-        this.baseUrl = '/api/users';
-    }
+  if (!window.api) {
+    console.error('[UsersApi] window.api is not defined. Load /shared/api.js before usersApi.js');
+  }
 
-    /**
-     * GET /api/users
-     * @returns {Promise<Array>} List of all users
-     */
+  const baseUrl = '/api/users';
+
+  const usersApi = {
     async getAll() {
-        console.log('[UsersApi] GET /api/users');
-        return await api.get(this.baseUrl);
-    }
+      console.log('[UsersApi] GET /api/users');
+      return window.api.get(baseUrl);
+    },
 
-    /**
-     * GET /api/users/{id}
-     * @param {string} id - User ID
-     * @returns {Promise<Object>} User details
-     */
     async getById(id) {
-        console.log(`[UsersApi] GET /api/users/${id}`);
-        return await api.get(`${this.baseUrl}/${id}`);
-    }
+      console.log(`[UsersApi] GET /api/users/${id}`);
+      return window.api.get(`${baseUrl}/${encodeURIComponent(id)}`);
+    },
 
-    /**
-     * GET /api/users/email/{email}
-     * @param {string} email - User email
-     * @returns {Promise<Object>} User details
-     */
     async getByEmail(email) {
-        console.log(`[UsersApi] GET /api/users/email/${email}`);
-        return await api.get(`${this.baseUrl}/email/${email}`);
-    }
+      console.log(`[UsersApi] GET /api/users/email/${email}`);
+      return window.api.get(`${baseUrl}/email/${encodeURIComponent(email)}`);
+    },
 
-    /**
-     * POST /api/users
-     * @param {Object} user - User data to create
-     * @returns {Promise<Object>} Created user
-     */
+    // ✅ ADD THIS: your fix request
+    async getByUsername(username) {
+      console.log(`[UsersApi] GET /api/users/username/${username}`);
+      return window.api.get(`${baseUrl}/username/${encodeURIComponent(username)}`);
+    },
+
+    // ✅ Optional (best practice): if you add backend /api/users/me
+    async getMe() {
+      console.log('[UsersApi] GET /api/users/me');
+      return window.api.get(`${baseUrl}/me`);
+    },
+
     async create(user) {
-        console.log('[UsersApi] POST /api/users', user);
-        return await api.post(this.baseUrl, user);
-    }
+      console.log('[UsersApi] POST /api/users', user);
+      return window.api.post(baseUrl, user);
+    },
 
-    /**
-     * PUT /api/users/{id}
-     * @param {string} id - User ID
-     * @param {Object} user - Updated user data
-     * @returns {Promise<Object>} Updated user
-     */
     async update(id, user) {
-        console.log(`[UsersApi] PUT /api/users/${id}`, user);
-        return await api.put(`${this.baseUrl}/${id}`, user);
-    }
+      console.log(`[UsersApi] PUT /api/users/${id}`, user);
+      return window.api.put(`${baseUrl}/${encodeURIComponent(id)}`, user);
+    },
 
-    /**
-     * DELETE /api/users/{id}
-     * @param {string} id - User ID to delete
-     * @returns {Promise<void>}
-     */
     async delete(id) {
-        console.log(`[UsersApi] DELETE /api/users/${id}`);
-        return await api.delete(`${this.baseUrl}/${id}`);
-    }
+      console.log(`[UsersApi] DELETE /api/users/${id}`);
+      return window.api.delete(`${baseUrl}/${encodeURIComponent(id)}`);
+    },
 
-    /**
-     * PATCH /api/users/{id}/status
-     * @param {string} id - User ID
-     * @param {boolean} active - New status
-     * @returns {Promise<Object>} Updated user
-     */
     async updateStatus(id, active) {
-        console.log(`[UsersApi] PATCH /api/users/${id}/status`, { active });
-        return await api.put(`${this.baseUrl}/${id}/status`, { active });
+      console.log(`[UsersApi] PUT /api/users/${id}/status`, { active });
+      return window.api.put(`${baseUrl}/${encodeURIComponent(id)}/status`, { active });
     }
-}
+  };
 
-// Export singleton
-const usersApi = new UsersApi();
+  window.usersApi = usersApi;
+})();

@@ -30,4 +30,6 @@ class AtmsApi {
         return await api.delete(`${this.baseUrl}/${id}`);
     }
 }
+
 const atmsApi = new AtmsApi();
+window.atmsApi = atmsApi;

@@ -34,11 +34,26 @@ public class HotelService {
     public Hotel updateHotel(UUID id, Hotel hotelDetails) {
         return hotelRepository.findById(id)
                 .map(hotel -> {
+                    // Basic info
                     hotel.setName(hotelDetails.getName());
                     hotel.setAddress(hotelDetails.getAddress());
-                    hotel.setRating(hotelDetails.getRating());
+                    hotel.setEmail(hotelDetails.getEmail());
+                    hotel.setPhoneNumber(hotelDetails.getPhoneNumber());
+                    hotel.setDescription(hotelDetails.getDescription());
+
+                    // Pricing
                     hotel.setMinPrice(hotelDetails.getMinPrice());
                     hotel.setMaxPrice(hotelDetails.getMaxPrice());
+                    hotel.setStartingPrice(hotelDetails.getStartingPrice());
+
+                    // Ratings
+                    hotel.setStarRating(hotelDetails.getStarRating());
+                    hotel.setRating(hotelDetails.getRating());
+
+                    // Image and status
+                    hotel.setImageUrl(hotelDetails.getImageUrl());
+                    hotel.setActive(hotelDetails.isActive());
+
                     return hotelRepository.save(hotel);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Hotel not found"));

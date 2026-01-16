@@ -36,8 +36,13 @@ public class AttractionService {
     public Attraction updateAttraction(UUID id, Attraction details) {
         return attractionRepository.findById(id)
                 .map(attraction -> {
-                    attraction.updateDetails(details.getName(), details.getCategory(), details.getDescription());
-                    attraction.updateTicketPrice(details.getTicketPrice());
+                    attraction.setName(details.getName());
+                    attraction.setCategory(details.getCategory());
+                    attraction.setDescription(details.getDescription());
+                    attraction.setTicketPrice(details.getTicketPrice());
+                    attraction.setAddress(details.getAddress());
+                    attraction.setContactNumber(details.getContactNumber());
+                    attraction.setImageUrl(details.getImageUrl());
                     return attractionRepository.save(attraction);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Attraction not found"));

@@ -34,11 +34,20 @@ public class TheatreService {
     public Theatre updateTheatre(UUID id, Theatre details) {
         return theatreRepository.findById(id)
                 .map(theatre -> {
+                    // Basic information
                     theatre.setName(details.getName());
                     theatre.setAddress(details.getAddress());
-                    theatre.setRating(details.getRating());
                     theatre.setDescription(details.getDescription());
+                    
+                    // Contact information
                     theatre.setContactNumber(details.getContactNumber());
+                    
+                    // Rating
+                    theatre.setRating(details.getRating());
+                    
+                    // Image URL
+                    theatre.setImageUrl(details.getImageUrl());
+                    
                     return theatreRepository.save(theatre);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Theatre not found"));

@@ -30,4 +30,6 @@ class AttractionsApi {
         return await api.delete(`${this.baseUrl}/${id}`);
     }
 }
+
 const attractionsApi = new AttractionsApi();
+window.attractionsApi = attractionsApi;

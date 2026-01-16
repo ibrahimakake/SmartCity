@@ -208,5 +208,7 @@ class Api {
     }
 }
 
+// Make api globally available instead of using export
 const api = new Api();
-export default api;
+// If you need it available globally
+window.api = api;
